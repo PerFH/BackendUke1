@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
 
 namespace BackendUke1;
 
@@ -12,17 +13,18 @@ class Program
         bool hasLower = false;
         bool hasDigit = false;
         bool hasSpecial = false;
+        string pword;
+        int pwScore = 0;
+        Random rng = new Random();
         string updatePrompt()
         {
-            string pword = getInput();
+            pword = getInput();
             foreach (char letter in pword)
                 {
                 if (char.IsUpper(letter))
-
                     {
                     hasUpper = true;
                     }
-                
                 if (char.IsLower(letter))
                     {
                     hasLower = true;
@@ -44,20 +46,26 @@ class Program
                         prompt = "That password is WEAK! Try again!";
                         break;
                     }
+                case (>=8, true, true, true, true):
+                    {
+                    prompt = "That is a strong and secure password!";
+                    break;
+                    }
                 default:
                     {
-                        prompt = "Now we're getting somewhere...";
-                        Console.WriteLine($"D:{hasDigit}, L:{hasLower}, U:{hasUpper}, S:{hasSpecial}");
                         pwScoring();
+                        prompt = $"Your password satisfies {pwScore}/4 different symbol requirements for a secure password." +
+                            "I will improve it:";
+                        Console.WriteLine($"Digit:{hasDigit}, Lowercase:{hasLower}, Uppercase:{hasUpper}, Special:{hasSpecial}");
+                        pwUpgrade();
                 break;
                     }
             }
             return prompt;
 
         }
-        void pwScoring()
+        void pwScoring() //int
         {
-            int pwScore = 0;
             if (hasUpper) {
                 pwScore ++;
             }
@@ -70,14 +78,44 @@ class Program
             if (hasSpecial) {
                 pwScore++;
             }
-            Console.WriteLine($"Password Score is: {pwScore}");
-                    
+
                     //må flyttes til et bedre sted, så man kan ivareta verdiene til bonus
                     hasUpper = false;
                     hasLower = false;
                     hasDigit = false;
                     hasSpecial = false;
                     //return pwScore;
+        }
+        void pwUpgrade()
+        {
+            string pwordImproved = pword;
+            if (!hasLower)
+            {
+                int findLower = rng.Next(97 ,122);
+                char lowerAdd = (char)findLower;
+                pwordImproved = pword + lowerAdd;
+            }
+            if (!hasUpper)
+            {
+                int findUpper = rng.Next(65, 90);
+                char upperAdd = (char)findUpper;
+                pwordImproved = pword + upperAdd;
+            }
+            if (!hasDigit)
+            {
+                foreach  (char character in pword)
+                {
+                    int numberAdd =+ character;
+                    pwordImproved = pword + numberAdd;
+                }
+            }
+            if (!hasSpecial)
+            {
+                string specials = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+                char specialAdd = specials[rng.Next(0, specials.Length)];
+                pwordImproved = pword + specialAdd;
+            }
+            prompt = $"I have improved your password: {pwordImproved}";
         }
         string getInput()
         {
@@ -86,9 +124,37 @@ class Program
         }
         while(true)
         Console.WriteLine(updatePrompt());
+
+        /*void pwSuggest(int pwScoring)
+        {
+            if suggestQuery == y/yes then run
+                switch (pwScoring(),hasLower, hasUpper, hasDigit, hasSpecial)
+            {   //hvis uppercase mangler, og har lowercase
+                case (1,true, false, false, false):
+                    {
+                        Console.WriteLine(char.ToUpper(pword[rng.Next(0, pword.Length)]));
+                        break;
+                    }
+                case (1,false, true, false, false):
+                    {
+                        char letterToSwitch = char.ToLower(pword[rng.Next(0, pword.Length)]);
+                        break;
+                    }
+                case (1, _, _, true, _):
+                    {
+                        "only digits are obsolete"
+                        break; 
+                    }
+                case (1, _, _ )
+            }    
+        }*/
     }   
 }
 
+
+
+
+ 
 //Oppgave, uke 1
 //Et program som sjekker lengden på en tekststreng (f.eks. med .Length på en string-variabel)
 //og vurderer om det kan være et sterkt eller svakt passord

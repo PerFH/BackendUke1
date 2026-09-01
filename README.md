@@ -24,12 +24,12 @@ foreslå bedre passord med input og legg til manglende symboler for å oppfylle 
 lage random
 
 if !hasLower
-    lowerAdd = rng (97, 122) 
+    char lowerAdd = rng (97, 122) 
     string actualSuggest = pword + lowerAdd
     hasLower = true
 if !hasUpper...
 if !hasDigit...
-    if !hasSpecial
+if !hasSpecial
     string specials = "!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
         rng.pickoneofthespecials
         add it

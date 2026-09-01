@@ -41,18 +41,43 @@ class Program
             {
                 case (<8, _, _, _, _):
                     {
-                        prompt = "That password is WEAK! It can be hacked instantly";
+                        prompt = "That password is WEAK! Try again!";
                         break;
                     }
                 default:
                     {
                         prompt = "Now we're getting somewhere...";
                         Console.WriteLine($"D:{hasDigit}, L:{hasLower}, U:{hasUpper}, S:{hasSpecial}");
+                        pwScoring();
                 break;
                     }
             }
             return prompt;
 
+        }
+        void pwScoring()
+        {
+            int pwScore = 0;
+            if (hasUpper) {
+                pwScore ++;
+            }
+            if (hasLower) {
+                pwScore ++;
+            }
+            if (hasDigit) {
+                pwScore ++;
+            }
+            if (hasSpecial) {
+                pwScore++;
+            }
+            Console.WriteLine($"Password Score is: {pwScore}");
+                    
+                    //må flyttes til et bedre sted, så man kan ivareta verdiene til bonus
+                    hasUpper = false;
+                    hasLower = false;
+                    hasDigit = false;
+                    hasSpecial = false;
+                    //return pwScore;
         }
         string getInput()
         {

@@ -18,39 +18,25 @@ case 2 3 parameters = good enough but x would be nice
 case 3 4 parameters = strong
 
 # Bonus
- foreslå bedre passord basert på input og hvor mange parametre som ikke er oppfylt
-en funksjon pr score
-oneMissingParameter
-    else if blokk, if (!has....) kjør rng med tilsvarende range, og bruk rng til å outputte manglende parameter 
-    manglende stor eller liten bokstav, gjør om en eller flere av de til motsatt case
-    manglende tall, sum av chars/antall = tallet
-    manglende special char kjør rng
-twoMissingParameters
-    dette blir en ganske lang else if blokk
-threeMissingParameters
-    sjekk hvem parameter som er oppfylt
-    hvis bare tall? obsolete!
-
-# Pseudokode for generator
+generere manglende kode for å oppfylle alle 4 parametrene
+foreslå bedre passord med input og legg til manglende symboler for å oppfylle alle krav
+# Pseudokode for generering
 lage random
-string pwSuggest(pwScore())
-    ny switch, pwScore hasL + hasU + hasD + hasS
-        case (1, _, _, _, _)
-        case hvis dette er bare store eller små bokstaver, plukk et tegn ut og gjør det til motsatt
-        case hvis bare tall, obsolete, prøv på nytt
-        case hvis bare spesialtegn, ta tallverdien og legg sammen og legg til,
-        i 3 av 4 tilfeller vil dette nå oppfylle 2 parametre,
-        case (2,_,_,_,_)
-        case bokstaver+tall, så den garantert får tak på en bokstav, og gjør den om til stor/liten (3 av 4)
-            finne en clean måte å anbefale spesialtegn, % deling?
-        case bokstaver + spesialtegn legg sammen verdien på alt og legg til tallverdi, 
-            og gjør om til stor/liten bokstav (4 av 4)
-        case manglende bokstaver.... dette blir vel et mattestykke, hvis 32-47, legg på 18 i verdien for å komme inn på bokstaver osv.
-        case (3,_,_,_,_)
-        manglende bokstavcase, endre
-        manglende tall, legg sammen verdien på passordet og legg til tallverdi
-        manglende spesialtegn, kjøre random(flere ganger?) er også en mulighet, cleanere og lettere enn å legge på 18
-Console.Writeline($Here is a more secure version of your password: {pword}{pwSuggest()})
+
+if !hasLower
+    lowerAdd = rng (97, 122) 
+    string actualSuggest = pword + lowerAdd
+    hasLower = true
+if !hasUpper...
+if !hasDigit...
+    if !hasSpecial
+    string specials = "!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+        rng.pickoneofthespecials
+        add it
+        hasSpecials = true
+
+
+
 
 
 values for special chars:

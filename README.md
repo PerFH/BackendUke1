@@ -30,7 +30,27 @@ twoMissingParameters
 threeMissingParameters
     sjekk hvem parameter som er oppfylt
     hvis bare tall? obsolete!
-    
+
+# Pseudokode for generator
+lage random
+string pwSuggest(pwScore())
+    ny switch, pwScore hasL + hasU + hasD + hasS
+        case (1, _, _, _, _)
+        case hvis dette er bare store eller små bokstaver, plukk et tegn ut og gjør det til motsatt
+        case hvis bare tall, obsolete, prøv på nytt
+        case hvis bare spesialtegn, ta tallverdien og legg sammen og legg til,
+        i 3 av 4 tilfeller vil dette nå oppfylle 2 parametre,
+        case (2,_,_,_,_)
+        case bokstaver+tall, så den garantert får tak på en bokstav, og gjør den om til stor/liten (3 av 4)
+            finne en clean måte å anbefale spesialtegn, % deling?
+        case bokstaver + spesialtegn legg sammen verdien på alt og legg til tallverdi, 
+            og gjør om til stor/liten bokstav (4 av 4)
+        case manglende bokstaver.... dette blir vel et mattestykke, hvis 32-47, legg på 18 i verdien for å komme inn på bokstaver osv.
+        case (3,_,_,_,_)
+        manglende bokstavcase, endre
+        manglende tall, legg sammen verdien på passordet og legg til tallverdi
+        manglende spesialtegn, kjøre random(flere ganger?) er også en mulighet, cleanere og lettere enn å legge på 18
+Console.Writeline($Here is a more secure version of your password: {pword}{pwSuggest()})
 
 
 values for special chars:

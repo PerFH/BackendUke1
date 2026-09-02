@@ -80,10 +80,7 @@ class Program
             }
 
                     //må flyttes til et bedre sted, så man kan ivareta verdiene til bonus
-                    hasUpper = false;
-                    hasLower = false;
-                    hasDigit = false;
-                    hasSpecial = false;
+
                     //return pwScore;
         }
         void pwUpgrade()
@@ -116,6 +113,10 @@ class Program
                 pwordImproved = pword + specialAdd;
             }
             prompt = $"I have improved your password: {pwordImproved}";
+                    hasUpper = false;
+                    hasLower = false;
+                    hasDigit = false;
+                    hasSpecial = false;
         }
         string getInput()
         {

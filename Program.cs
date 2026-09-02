@@ -62,9 +62,8 @@ class Program
                 default:
                     {
                         pwScoring();
-                        prompt = $"Your password satisfies {pwScore}/4 different symbol requirements for a secure password." +
-                            "I will improve it:";
-                        Console.WriteLine($"Digit:{hasDigit}, Lowercase:{hasLower}, Uppercase:{hasUpper}, Special:{hasSpecial}");
+                        Console.WriteLine($"Digit:{hasDigit}, Lowercase:{hasLower}, Uppercase:{hasUpper}, Special:{hasSpecial}\n" +
+                        $"Your password satisfies {pwScore}/4 different symbol requirements for a secure password.");
                         pwUpgrade();
                 break;
                     }

@@ -44,11 +44,19 @@ class Program
                 case (<8, _, _, _, _):
                     {
                         prompt = "That password is WEAK! Try again!";
+                        hasUpper = false;
+                        hasLower = false;
+                        hasDigit = false;
+                        hasSpecial = false;
                         break;
                     }
                 case (>=8, true, true, true, true):
                     {
                     prompt = "That is a strong and secure password!";
+                        hasUpper = false;
+                        hasLower = false;
+                        hasDigit = false;
+                        hasSpecial = false;
                     break;
                     }
                 default:
@@ -85,34 +93,34 @@ class Program
         }
         void pwUpgrade()
         {
-            string pwordImproved = pword;
+            //string pwordImproved = pword;
             if (!hasLower)
             {
                 int findLower = rng.Next(97 ,122);
                 char lowerAdd = (char)findLower;
-                pwordImproved = pword + lowerAdd;
+                pword = pword + lowerAdd;
             }
             if (!hasUpper)
             {
                 int findUpper = rng.Next(65, 90);
                 char upperAdd = (char)findUpper;
-                pwordImproved = pword + upperAdd;
+                pword = pword + upperAdd;
             }
             if (!hasDigit)
             {
                 foreach  (char character in pword)
                 {
                     int numberAdd =+ character;
-                    pwordImproved = pword + numberAdd;
+                    pword = pword + numberAdd;
                 }
             }
             if (!hasSpecial)
             {
                 string specials = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
                 char specialAdd = specials[rng.Next(0, specials.Length)];
-                pwordImproved = pword + specialAdd;
+                pword = pword + specialAdd;
             }
-            prompt = $"I have improved your password: {pwordImproved}";
+            prompt = $"I have improved your password: {pword}";
                     hasUpper = false;
                     hasLower = false;
                     hasDigit = false;
